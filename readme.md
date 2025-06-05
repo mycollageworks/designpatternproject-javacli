@@ -5,7 +5,8 @@
 2. clone this repository
 3. go to directory
 4. open in wsl/terminal
-5. build the project
+5. copy .env.example to .env
+6. build the project
    ```bash
    ./build.sh
    ```
