@@ -32,10 +32,26 @@ public class Main {
 
             Command command = commands.get(input);
             if (command != null) {
+                // cleanup screen before executing the command
+                cleanup();
                 command.execute();
             } else {
                 System.out.println("❌ Invalid option.");
             }
+        }
+    }
+
+    private static void cleanup() {
+        // Clear the console (platform dependent)
+        try {
+            if (System.getProperty("os.name").toLowerCase().contains("win")) {
+                new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+            } else {
+                new ProcessBuilder("clear").inheritIO().start().waitFor();
+            }
+        } catch (Exception e) {
+            // If clearing fails, just print a new line
+            System.out.println("\n".repeat(50));
         }
     }
 
